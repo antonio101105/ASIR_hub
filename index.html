@@ -10,18 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        window.mermaid = mermaid;
+    </script>
 </head>
 
 <body>
+    <!-- Development Banner -->
+    <div class="dev-banner">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Este proyecto está actualmente en desarrollo. Algunas funciones pueden no estar disponibles.</span>
+    </div>
+
     <div class="background-glow"></div>
 
     <nav class="navbar">
         <div class="logo">
             <i class="fa-solid fa-network-wired"></i> ASIR_hub
         </div>
-        <button class="btn-primary" id="openModalBtn">
-            <i class="fa-solid fa-plus"></i> Compartir Recurso
-        </button>
     </nav>
 
     <header class="hero">
@@ -44,49 +52,44 @@
     </header>
 
     <main class="container">
+        <div id="topicsContainer" class="topics-container">
+            <!-- Topics injected by JS -->
+        </div>
         <div class="resource-grid" id="resourceGrid">
             <!-- Resources will be injected here by JS -->
         </div>
     </main>
 
-    <!-- Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
+    <!-- Topic Content Modal -->
+    <div class="modal-overlay" id="topicModalOverlay">
+        <div class="modal topic-modal">
             <div class="modal-header">
-                <h2>Compartir Nuevo Recurso</h2>
-                <button class="close-modal" id="closeModalBtn"><i class="fa-solid fa-times"></i></button>
+                <h2 id="topicModalTitle">Título del Tema</h2>
+                <button class="close-modal" id="closeTopicModalBtn"><i class="fa-solid fa-times"></i></button>
             </div>
-            <form class="resource-form" id="resourceForm">
-                <div class="form-group">
-                    <label for="title">Título</label>
-                    <input type="text" id="title" required placeholder="Ej: Apuntes Tema 1...">
+            <div class="modal-content" id="topicModalContent">
+                <!-- Content injected by JS -->
+            </div>
+
+            <!-- AI Tools Section -->
+            <div class="ai-tools">
+                <h3>🤖 Herramientas IA</h3>
+                <div class="ai-buttons">
+                    <button class="ai-btn" onclick="pedirIA('resumen')">
+                        <i class="fa-solid fa-file-lines"></i> Resumen
+                    </button>
+                    <button class="ai-btn" onclick="pedirIA('test')">
+                        <i class="fa-solid fa-clipboard-question"></i> Test
+                    </button>
+                    <button class="ai-btn" onclick="pedirIA('mapa')">
+                        <i class="fa-solid fa-diagram-project"></i> Mapa Mental
+                    </button>
+                    <button class="ai-btn" onclick="pedirIA('explicacion')">
+                        <i class="fa-solid fa-lightbulb"></i> Explicación
+                    </button>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="yearSelect">Curso</label>
-                        <select id="yearSelect" required>
-                            <option value="1">1º ASIR</option>
-                            <option value="2">2º ASIR</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="subjectSelect">Asignatura</label>
-                        <select id="subjectSelect" required>
-                            <!-- Populated by JS -->
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="url">URL</label>
-                    <input type="url" id="url" required placeholder="https://...">
-                </div>
-                <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <textarea id="description" rows="3" required
-                        placeholder="Breve descripción del recurso..."></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Publicar Recurso</button>
-            </form>
+                <div id="resultado-ia" class="ai-result"></div>
+            </div>
         </div>
     </div>
 
