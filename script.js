@@ -3,6 +3,28 @@ const subjects = {
     2: ['ASO', 'ASGBD', 'SAD', 'PROY', 'OPT', 'IPE2', 'IAW', 'HLC', 'ING', 'SRI']
 };
 
+// Subject icons mapping
+const subjectIcons = {
+    'FH': 'fa-solid fa-microchip',
+    'DIG': 'fa-solid fa-diagram-project',
+    'GBD': 'fa-solid fa-database',
+    'LMSGI': 'fa-solid fa-code',
+    'SOS': 'fa-solid fa-server',
+    'IPE1': 'fa-solid fa-briefcase',
+    'ISO': 'fa-brands fa-linux',
+    'PAR': 'fa-solid fa-network-wired',
+    'ASO': 'fa-solid fa-terminal',
+    'ASGBD': 'fa-solid fa-table',
+    'SAD': 'fa-solid fa-shield-halved',
+    'PROY': 'fa-solid fa-folder-open',
+    'OPT': 'fa-solid fa-puzzle-piece',
+    'IPE2': 'fa-solid fa-handshake',
+    'IAW': 'fa-brands fa-html5',
+    'HLC': 'fa-solid fa-laptop-code',
+    'ING': 'fa-solid fa-language',
+    'SRI': 'fa-solid fa-ethernet'
+};
+
 const topicsData = {
     'FH': [
         {
@@ -725,11 +747,15 @@ function renderTopics() {
     }
 
     const topics = topicsData[currentSubject];
-    let html = `<h3>Temas de ${currentSubject}</h3><div class="topics-grid">`;
+    const subjectIcon = subjectIcons[currentSubject] || 'fa-solid fa-book';
+    let html = `<h3><i class="${subjectIcon}"></i> Temas de ${currentSubject}</h3><div class="topics-grid">`;
 
     topics.forEach((topic, index) => {
+        // Extract topic number from title (e.g., "Tema 1:" -> 1)
+        const topicNumber = topic.title.match(/Tema (\d+)/)?.[1] || (index + 1);
         html += `
             <div class="topic-card">
+                <div class="topic-number"><i class="fa-solid fa-book-open"></i> ${topicNumber}</div>
                 <h4>${topic.title}</h4>
                 <p>${topic.desc}</p>
                 ${topic.content ? `<button class="btn-read-more" onclick="openTopicModal('${currentSubject}', ${index})">Leer más</button>` : ''}
