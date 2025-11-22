@@ -955,6 +955,349 @@ const topicsData = {
                     <li><strong>Conectividad de Red:</strong> Si no hay internet, se debe verificar físicamente el cable/tarjeta, luego los drivers, y finalmente la configuración del sistema operativo (que no esté deshabilitada).</li>
                 </ul>
             `
+        },
+        {
+            title: 'Tema 10: Mantenimiento de Sistemas',
+            desc: 'Gestión y cuidado de sistemas informáticos, niveles de mantenimiento y herramientas software.',
+            content: `
+                <h3>1. Concepto de Sistema Informático</h3>
+                <p><strong>Definición:</strong> Conjunto de partes que funcionan relacionándose entre sí para conseguir un objetivo preciso.</p>
+                
+                <h4>Componentes</h4>
+                <ul>
+                    <li><strong>Hardware:</strong> Dispositivos electrónicos y mecánicos (teclado, ratón, monitor, etc.).</li>
+                    <li><strong>Software:</strong> Programas y datos (sistema operativo, aplicaciones).</li>
+                    <li><strong>Personal:</strong> Usuarios y desarrolladores (programadores, analistas).</li>
+                    <li><strong>Documentación:</strong> Manuales y formularios de instrucciones.</li>
+                </ul>
+                <p><strong>Sistema de Información (SI):</strong> Sistema para el intercambio de información en una empresa. Si está informatizado, se llama Sistema de Información Automatizado (SIA).</p>
+
+                <h3>2. Mantenimiento de Sistemas</h3>
+                <ul>
+                    <li><strong>Objetivo:</strong> Conseguir que los equipos sean operativos el mayor tiempo posible y sin fallos.</li>
+                    <li><strong>Importancia:</strong> Reduce costes a largo plazo, evita pérdidas económicas por fallos, protege datos confidenciales y mejora la productividad.</li>
+                    <li><strong>Organización:</strong> Puede ser interno o externo. En grandes empresas se centraliza en el CAU (Centro de Atención al Usuario).</li>
+                    <li><strong>Metodología:</strong> En España se utiliza METRICA para el mantenimiento de sistemas de información.</li>
+                </ul>
+
+                <h3>3. Niveles de Mantenimiento</h3>
+                <h4>Nivel de Hardware</h4>
+                <p>Vigila el estado físico de equipos y periféricos. Tareas: limpieza, comprobación de límites (voltaje, temperatura), reemplazo de componentes.</p>
+                
+                <h4>Nivel de Software</h4>
+                <p>Cuida aplicaciones y datos. Fallos comunes por virus o inestabilidad. Tareas: limpieza de archivos, optimización del SO, revisión de seguridad.</p>
+                
+                <h4>Nivel de Documentación</h4>
+                <p>Mantiene actualizada la información sobre el sistema. Tareas: registro de mantenimiento, actualización de manuales.</p>
+                
+                <p><strong>Interacción:</strong> Los niveles están interrelacionados; un cambio en hardware puede requerir ajustes en software y documentación.</p>
+
+                <h3>4. Técnicas Auxiliares de Mantenimiento</h3>
+                <ul>
+                    <li><strong>Mantenimiento Predictivo:</strong> Pronostica fallos futuros mediante herramientas de diagnóstico para actuar antes de que ocurran.</li>
+                    <li><strong>Mantenimiento Preventivo:</strong> Aplica técnicas para minimizar riesgos y alargar la vida útil (Planificación MPP).
+                        <ul>
+                            <li>Activo: Limpieza periódica.</li>
+                            <li>Pasivo: Protección contra condiciones ambientales adversas.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Mantenimiento Correctivo:</strong> Reparación o reemplazo de componentes que fallan.
+                        <ul>
+                            <li>Plazo fijo: Reemplazo por vida útil expirada.</li>
+                            <li>Plazo variable: Decisión basada en el estado real del componente.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p><strong>Frecuencia:</strong> Depende del ambiente, calidad de componentes, estrés del sistema y criticidad.</p>
+
+                <h3>5. Herramientas Software para Mantenimiento Preventivo</h3>
+                <ul>
+                    <li><strong>Sistema Operativo:</strong> Limpieza y optimización del registro (ej. RegCleaner), gestión de actualizaciones (parches).</li>
+                    <li><strong>Información:</strong> Comprobación de integridad (chkdsk), limpieza de archivos innecesarios (CCleaner), desfragmentación (Defraggler).</li>
+                    <li><strong>Seguridad:</strong> Antivirus (Avast, Kaspersky), antimalware (Spybot), cortafuegos (ZoneAlarm).</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Tema 11: Reparación de Equipos',
+            desc: 'Detección de averías, señales de aviso, fallos comunes e incompatibilidades de hardware.',
+            content: `
+                <h3>1. Detección de Averías</h3>
+                <h4>Tipos</h4>
+                <ul>
+                    <li><strong>Hardware:</strong> Fallos físicos en componentes (caja, pila, microprocesador, memoria, etc.).</li>
+                    <li><strong>Software:</strong> Fallos lógicos en sistema operativo, aplicaciones o firmware (BIOS).</li>
+                </ul>
+                
+                <h4>Herramientas</h4>
+                <ul>
+                    <li><strong>Hardware:</strong> Destornilladores, pinzas, polímetro, tarjetas POST. Protección con guantes de nitrilo o kevlar.</li>
+                    <li><strong>Software:</strong> Aplicaciones de diagnóstico.</li>
+                </ul>
+                <p><strong>Protocolo:</strong> Seguir diagramas de flujo lógicos para aislar el problema (verificar alimentación, conexiones, componentes uno a uno).</p>
+
+                <h3>2. Señales de Aviso</h3>
+                <ul>
+                    <li><strong>Acústicas (Beeps):</strong> La BIOS emite pitidos al arrancar (POST) para indicar errores. El significado varía según el fabricante (AMI, Award, Phoenix). Ej: 1 pitido largo y 3 cortos en Award indica error de teclado.</li>
+                    <li><strong>Luminosas:</strong> LEDs en el frontal o componentes que indican estado/actividad.</li>
+                    <li><strong>Mensajes en pantalla:</strong> Texto explicativo del error (ej. "Keyboard error").</li>
+                </ul>
+
+                <h3>3. Fallos Comunes</h3>
+                <ul>
+                    <li><strong>Sistema parado:</strong> Revisar cableado, interruptor, fusibles y fuente de alimentación (con polímetro).</li>
+                    <li><strong>Paradas/Reinicios:</strong> Puede ser por alimentación insuficiente o sobrecalentamiento (revisar ventiladores y temperatura).</li>
+                    <li><strong>Caja:</strong> Botones o LEDs fallan (revisar conexiones o sustituir).</li>
+                    <li><strong>Fuente de alimentación:</strong> No arranca o voltajes incorrectos. Puede provocar reinicios si no tiene potencia suficiente.</li>
+                    <li><strong>Microprocesador:</strong> Sobrecalentamiento (reinicios) o pines doblados/rotos (no arranca, ventiladores giran pero no hace nada más).</li>
+                    <li><strong>Refrigeración:</strong> Ventilador parado o lento (limpiar polvo, revisar conexión, cambiar ventilador).</li>
+                    <li><strong>Placa Base:</strong> Componentes dañados o configuración BIOS no se guarda (revisar jumper de borrado o pila).</li>
+                    <li><strong>Pila:</strong> Agotada (fecha/hora retrasada). Sustituir por una idéntica (CR2032 habitual).</li>
+                    <li><strong>Memoria RAM:</strong> Ordenador no arranca o pita (mal colocada/dañada), fallos aleatorios o de instalación de SO. Revisar compatibilidad y colocación.</li>
+                    <li><strong>Tarjetas Expansión:</strong> Mala colocación o drivers incorrectos.</li>
+                    <li><strong>Discos Duros:</strong> No detectado (revisar cable/jumper IDE), ruidos mecánicos (fallo físico grave, sustituir).</li>
+                </ul>
+
+                <h3>4. Incompatibilidades de Hardware</h3>
+                <ul>
+                    <li><strong>Caja - Placa:</strong> El factor de forma debe coincidir (ej. caja Mini ITX solo para placas Mini ITX).</li>
+                    <li><strong>Microprocesador - Socket:</strong> Deben ser física y eléctricamente compatibles (Intel vs AMD, generaciones).</li>
+                    <li><strong>Memoria RAM:</strong> Tipo (DDR3, DDR4), voltaje y velocidad deben ser soportados por la placa.</li>
+                    <li><strong>Gráfica:</strong> Tipo de slot (AGP, PCI-e) y voltaje.</li>
+                    <li><strong>Almacenamiento:</strong> Interfaz (IDE vs SATA). SATA es compatible entre versiones (I, II, III) pero limita velocidad al más lento.</li>
+                    <li><strong>Fuente:</strong> Conectores adecuados para la placa (ATX 20/24 pines) y potencia suficiente.</li>
+                    <li><strong>Refrigeración:</strong> Anclaje compatible con el socket y dimensiones aptas para la caja.</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Tema 12: Mantenimiento de Periféricos',
+            desc: 'Limpieza y cuidado de monitor, teclado, ratón, impresora, escáner y otros periféricos.',
+            content: `
+                <h3>1. Mantenimiento Integral</h3>
+                <ul>
+                    <li><strong>Ubicación:</strong> Evitar calor, humedad, polvo, sol directo y campos magnéticos. No poner en el suelo.</li>
+                    <li><strong>Frecuencia:</strong> Depende del ambiente (desde 1 vez/año en limpio hasta 12 veces/año en muy sucio).</li>
+                    <li><strong>Interior caja:</strong> Eliminar polvo (causa sobrecalentamiento) con aire comprimido y brochas. Lubricar ventiladores si hacen ruido.</li>
+                    <li><strong>Exterior:</strong> Paño con jabón neutro (sin disolventes).</li>
+                </ul>
+
+                <h3>2. Monitor</h3>
+                <ul>
+                    <li><strong>Limpieza:</strong> Paño microfibra o toallitas especiales. No presionar en pantallas TFT/LCD. No echar líquido directo.</li>
+                    <li><strong>Interior:</strong> Solo si es necesario (peligro voltaje). Aire comprimido.</li>
+                </ul>
+
+                <h3>3. Teclado y Ratón</h3>
+                <h4>Teclado</h4>
+                <p>Aire comprimido/brocha para interior teclas. Paño húmedo para superficie. En profundidad: desmontar teclas o carcasa.</p>
+                
+                <h4>Ratón</h4>
+                <ul>
+                    <li><strong>Mecánico (bola):</strong> Limpiar bola y rodillos internos de suciedad.</li>
+                    <li><strong>Óptico:</strong> Limpiar lente y base.</li>
+                </ul>
+                
+                <h4>Touchpad</h4>
+                <p>Paño húmedo, evitar líquidos directos.</p>
+
+                <h3>4. Impresora</h3>
+                <ul>
+                    <li><strong>Láser:</strong> Limpiar polvo/tóner con aspirador o paño especial.</li>
+                    <li><strong>Inyección:</strong> Limpieza de cabezales (bastoncillo con alcohol isopropílico) y depósito de tinta residual (esponja).</li>
+                </ul>
+
+                <h3>5. Escáner</h3>
+                <ul>
+                    <li><strong>Superficie de escaneo (cristal):</strong> Limpiacristales y paño microfibra. Evitar rayones y restos.</li>
+                    <li><strong>Mecanismo:</strong> Limpiar bandeja y rodillos si es de alimentación.</li>
+                </ul>
+
+                <h3>6. Otros Periféricos</h3>
+                <ul>
+                    <li><strong>Webcam:</strong> Limpiar lente con cuidado (bastoncillo/toallita monitor).</li>
+                    <li><strong>Micrófono:</strong> Limpiar con pincel.</li>
+                    <li><strong>Altavoces:</strong> Limpiar carcasa y rejilla (con brocha, sin mojar el interior).</li>
+                </ul>
+
+                <h3>7. Almacenamiento y Soportes</h3>
+                <ul>
+                    <li><strong>Discos Duros:</strong> Cuidar golpes y posición (horizontal).</li>
+                    <li><strong>Unidades Ópticas:</strong> Limpiar lente con CD limpiador o bastoncillo con alcohol isopropílico.</li>
+                    <li><strong>Soportes Ópticos (CD/DVD):</strong> Limpiar del centro hacia afuera (radial), nunca circular. Si están rayados, se pueden pulir/encerar. Guardar en caja, evitar sol/calor.</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Tema 13: Instalación de Software',
+            desc: 'Tipos de software, licencias, versiones y métodos de instalación.',
+            content: `
+                <h3>1. Tipos de Software</h3>
+                <ul>
+                    <li><strong>Software de Base (Sistema):</strong> Interactúa con el hardware (Sistemas Operativos, Drivers).</li>
+                    <li><strong>Software de Programación:</strong> Para desarrollar programas (Editores, Compiladores, IDEs).</li>
+                    <li><strong>Software de Aplicación:</strong> Tareas específicas para usuario (Ofimática, Diseño, Bases de Datos).</li>
+                </ul>
+
+                <h3>2. Licencias de Software</h3>
+                
+                <h4>Software Libre</h4>
+                <p>4 libertades: usar, estudiar, distribuir, modificar. Requiere código fuente disponible.</p>
+                <ul>
+                    <li><strong>GPL:</strong> Viral (modificaciones deben ser GPL).</li>
+                    <li><strong>LGPL:</strong> Permite integración con software propietario.</li>
+                    <li><strong>BSD/MPL:</strong> Más permisivas.</li>
+                </ul>
+                <p><strong>Copyleft:</strong> Garantiza que las versiones modificadas sigan siendo libres.</p>
+                
+                <h4>Software Privativo/Propietario</h4>
+                <p>Restringe uso, copia o modificación.</p>
+                <ul>
+                    <li><strong>EULA:</strong> Licencia de usuario final (habitual en Windows). Prohibe copia, una instalación por licencia.</li>
+                    <li><strong>OEM:</strong> Ligada al hardware nuevo, no transferible sola.</li>
+                    <li><strong>Retail:</strong> Venta al usuario, transferible si se desinstala.</li>
+                    <li><strong>Por volumen/Lotes:</strong> Para empresas.</li>
+                </ul>
+                
+                <h4>Otros tipos</h4>
+                <ul>
+                    <li><strong>Freeware:</strong> Gratuito pero no libre (sin código, prohibido modificar).</li>
+                    <li><strong>Shareware:</strong> Prueba gratuita con limitaciones (tiempo/funciones), pago para versión completa.</li>
+                    <li><strong>Dominio Público:</strong> Sin derechos de autor.</li>
+                </ul>
+
+                <h3>3. Versiones</h3>
+                <p>Diferencia entre software libre (con copyleft o sin él), semi-libre (uso sin ánimo de lucro), y comercial (busca beneficio económico, puede ser libre o no).</p>
+
+                <h3>4. Tipos de Instalaciones</h3>
+                <ul>
+                    <li><strong>Estándar:</strong> Parámetros por defecto, interacción sencilla.</li>
+                    <li><strong>Avanzada:</strong> Usuario personaliza componentes y configuración.</li>
+                    <li><strong>Remota:</strong> Instalación a través de red desde un servidor.</li>
+                    <li><strong>Desatendida:</strong> Automática, sin intervención del usuario (script o respuestas predefinidas).</li>
+                    <li><strong>Masiva:</strong> Instalación en muchos equipos a la vez (clonación o red).</li>
+                    <li><strong>Actualizaciones (Parches):</strong> Corrigen errores (bugs), añaden funciones o mejoran seguridad.</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Tema 14: Gestión de Discos',
+            desc: 'Estructura de discos, particiones, sistemas de archivos, herramientas y operaciones de gestión.',
+            content: `
+                <h3>1. Estructura del Disco Duro</h3>
+                
+                <h4>Estructura Física</h4>
+                <ul>
+                    <li><strong>Caras y Cabezas:</strong> Un disco duro tiene varios platos; cada plato tiene dos caras. El número de cabezas lectoras equivale al número de caras útiles. Se empiezan a numerar desde el 0.</li>
+                    <li><strong>Pistas:</strong> Anillos concéntricos en cada cara.</li>
+                    <li><strong>Cilindros:</strong> El conjunto de pistas que están en la misma posición vertical en todos los platos (la misma pista en todas las cabezas).</li>
+                    <li><strong>Sectores:</strong> Divisiones de la pista. Es la unidad mínima de información que se puede leer/escribir (aprox. 0.5 KB). Se numeran desde el 1.</li>
+                    <li><strong>Cluster:</strong> Agrupación de varios sectores.</li>
+                </ul>
+                <p><strong>Direccionamiento:</strong> La información se localiza mediante la coordenada: Cabeza - Cilindro - Sector.</p>
+
+                <h4>Estructura Lógica</h4>
+                <ul>
+                    <li><strong>MBR (Master Boot Record):</strong> Es el primer sector del disco. Contiene la tabla de particiones y el programa de arranque maestro (Master Boot) para iniciar el sistema operativo.</li>
+                    <li><strong>Espacio particionado:</strong> Zona del disco asignada a un fin (datos o programas).</li>
+                    <li><strong>Espacio no particionado:</strong> Zona no accesible ni asignada.</li>
+                </ul>
+
+                <h3>2. Partición de Discos</h3>
+                <p>Una unidad física puede dividirse en varias unidades lógicas llamadas particiones.</p>
+                
+                <h4>Tipos de Particiones</h4>
+                <ul>
+                    <li><strong>Primaria:</strong> División simple para contener sistemas operativos o datos. Un disco MBR admite máximo 4 primarias. Puede marcarse como Activa (la que arranca el equipo).</li>
+                    <li><strong>Extendida:</strong> Tipo especial de partición primaria que sirve de contenedor. Solo puede haber una por disco. No tiene letra de unidad propia.</li>
+                    <li><strong>Lógica:</strong> Subdivisiones dentro de la partición extendida. Se les asignan letras (D:, E:, etc.). No pueden ser activas.</li>
+                </ul>
+
+                <h4>RAID</h4>
+                <p>Sistema que usa varios discos conectados entre sí para mejorar rendimiento o seguridad.</p>
+                <ul>
+                    <li><strong>RAID 0 (Stripping):</strong> Velocidad, sin redundancia.</li>
+                    <li><strong>RAID 1 (Mirroring):</strong> Espejo, seguridad por duplicidad.</li>
+                    <li><strong>RAID 5:</strong> Datos y paridad distribuidos (seguridad y velocidad).</li>
+                </ul>
+
+                <h3>3. Sistemas de Archivos</h3>
+                <p>Estructura que se aplica al formatear una partición para poder guardar datos.</p>
+                
+                <h4>Sistemas Windows</h4>
+                <ul>
+                    <li><strong>FAT / FAT32:</strong> Compatibles con casi todo. Limitaciones: archivos no mayores de 4GB, particiones máx 32GB en teoría de Windows. Producen fragmentación.</li>
+                    <li><strong>NTFS:</strong> Estándar actual de Windows. Seguro, con registro de transacciones (journaling) para recuperación de errores. Admite archivos y particiones enormes.</li>
+                </ul>
+                
+                <h4>Sistemas Linux</h4>
+                <ul>
+                    <li><strong>ext (ext2, ext3, ext4):</strong> Incompatibles con Windows nativamente. ext4 es el más moderno (admite hasta 1 Exabyte).</li>
+                    <li><strong>Swap:</strong> Espacio de intercambio. Se usa como memoria virtual cuando la RAM se llena.</li>
+                </ul>
+
+                <h3>4. Herramientas de Gestión</h3>
+                <p>Software para crear, borrar y modificar particiones.</p>
+                <ul>
+                    <li><strong>FDISK:</strong> Herramienta básica de línea de comandos (Windows/Linux). Gestiona particiones pero no redimensiona sin borrar.</li>
+                    <li><strong>EASEUS Partition Master:</strong> Herramienta gráfica avanzada para Windows. Permite redimensionar, mover, convertir sistemas de archivos y gestionar discos dinámicos sin perder datos.</li>
+                    <li><strong>GParted:</strong> Herramienta gráfica gratuita para Linux (o LiveCD). Similar a EASEUS, soporta multitud de sistemas de archivos.</li>
+                </ul>
+
+                <h3>5. Operaciones con Particiones</h3>
+                <ul>
+                    <li><strong>Creación:</strong> Necesita espacio no particionado. Si es para arrancar un SO, debe estar dentro de los primeros 2GB (límite de arranque).</li>
+                    <li><strong>Redimensión y Desplazamiento:</strong> Cambiar el tamaño. Para agrandar una partición, debe haber espacio libre adyacente.</li>
+                    <li><strong>Asignación de espacio:</strong> Usar espacio libre. No se puede pasar espacio libre de un disco físico a otro disco físico distinto.</li>
+                    <li><strong>Fusión:</strong> Unir dos particiones contiguas.</li>
+                    <li><strong>Copia:</strong> Clonar una partición exacta a otro lugar (copia de seguridad).</li>
+                    <li><strong>Eliminación:</strong> Borra la partición y sus datos, dejando el espacio como "no asignado".</li>
+                    <li><strong>Conversión:</strong> Cambiar entre Primaria y Lógica, o cambiar sistema de archivos (ej. FAT a NTFS).</li>
+                </ul>
+
+                <h3>6. Formateo de Particiones</h3>
+                
+                <h4>Formateo a Alto Nivel (Lógico)</h4>
+                <ul>
+                    <li>Borra la tabla de acceso a archivos (el índice), pero no borra los datos físicamente (se pueden recuperar con software).</li>
+                    <li>Asigna el sistema de archivos (NTFS, FAT32, etc.).</li>
+                    <li>Comprueba errores lógicos.</li>
+                </ul>
+                
+                <h4>Formateo a Bajo Nivel (Físico)</h4>
+                <ul>
+                    <li>Elimina todas las particiones y datos de forma irreversible (vuelve a valores de fábrica).</li>
+                    <li>Es un proceso lento. Se usa por seguridad o errores graves.</li>
+                    <li>Herramientas: HDD Low Level Format Tool.</li>
+                </ul>
+
+                <h3>7. Discos Básicos y Dinámicos</h3>
+                
+                <h4>Disco Básico</h4>
+                <ul>
+                    <li>El estándar tradicional. Usa particiones primarias, extendidas y lógicas.</li>
+                    <li>Las particiones son independientes.</li>
+                </ul>
+                
+                <h4>Disco Dinámico</h4>
+                <p>Orientado a entornos profesionales. Usa Volúmenes.</p>
+                <p>Permite funcionalidades avanzadas (software RAID) sin hardware especial:</p>
+                <ul>
+                    <li><strong>Volumen Simple:</strong> Un solo disco.</li>
+                    <li><strong>Volumen Distribuido:</strong> Suma espacio de varios discos (se ve como una sola unidad).</li>
+                    <li><strong>Volumen Seccionado (RAID 0):</strong> Escribe en varios discos a la vez (más velocidad, sin seguridad).</li>
+                    <li><strong>Volumen Reflejado (RAID 1):</strong> Duplica datos en dos discos (seguridad ante fallos).</li>
+                    <li><strong>RAID 5:</strong> Datos y paridad en 3 o más discos.</li>
+                </ul>
+
+                <h3>Mundo Laboral: Discos NAS</h3>
+                <p><strong>NAS (Network Attached Storage):</strong> Discos duros conectados directamente a la red (vía cable Ethernet) que actúan como pequeños servidores.</p>
+                <ul>
+                    <li>Permiten compartir archivos entre múltiples usuarios simultáneamente.</li>
+                    <li>Suelen tener sistemas operativos propios (Linux, FreeNAS).</li>
+                    <li>Ideales para copias de seguridad y acceso remoto a archivos.</li>
+                </ul>
+            `
         }
     ],
     'ISO': [
