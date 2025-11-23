@@ -10,10 +10,10 @@ window.startQuiz = function (subject, index) {
 
     let html = '<div class="quiz-wrap">';
     topic.quiz.forEach((q, i) => {
-        html += `<div class="quiz-q" id="q${i}"><h4>${i + 1}. ${q.q}</h4><div class="quiz-opts">`;
+        html += `<div class="quiz-q" id="q${i}"><h4>${i + 1}. ${q.q.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h4><div class="quiz-opts">`;
         q.opts.forEach((opt, j) => {
             html += `<label class="quiz-opt"><input type="radio" name="q${i}" value="${j}" onchange="quizState.answers[${i}]=${j}">
-                <span>${String.fromCharCode(65 + j)}. ${opt}</span></label>`;
+                <span>${String.fromCharCode(65 + j)}. ${opt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span></label>`;
         });
         html += `</div><div class="quiz-fb" id="fb${i}"></div></div>`;
     });

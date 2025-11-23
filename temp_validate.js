@@ -1,4 +1,22 @@
-// Asignaturas por curso (1º y 2º de ASIR)
+
+        const window = {};
+        const document = { 
+            getElementById: () => ({ 
+                addEventListener: () => {},
+                classList: { add: () => {}, remove: () => {} },
+                innerHTML: '',
+                value: ''
+            }),
+            querySelectorAll: () => [],
+            createElement: () => ({ innerHTML: '' }),
+            querySelector: () => ({ innerHTML: '' })
+        };
+        const navigator = { clipboard: { writeText: () => Promise.resolve() } };
+        let currentYear = 1;
+        let currentSubject = 'all';
+        let currentSearch = '';
+        
+        // Asignaturas por curso (1º y 2º de ASIR)
 const subjects = {
     1: ['FH', 'DIG', 'GBD', 'LMSGI', 'SOS', 'IPE1', 'ISO', 'PAR'],
     2: ['ASO', 'ASGBD', 'SAD', 'PROY', 'OPT', 'IPE2', 'IAW', 'HLC', 'ING', 'SRI']
@@ -2720,7 +2738,7 @@ searchInput.addEventListener('input', (e) => {
 });
 
 // Iniciar la aplicación
-init();
+// init();
 
 // Función para copiar código
 window.copyCode = function (btn) {
@@ -2734,3 +2752,9 @@ window.copyCode = function (btn) {
     });
 }
 
+
+        
+        console.log('LMSGI Topics Count:', topicsData['LMSGI'].length);
+        console.log('LMSGI Topic 6 Quiz Length:', topicsData['LMSGI'][5].quiz.length);
+        console.log('LMSGI Topic 6 Quiz Content:', JSON.stringify(topicsData['LMSGI'][5].quiz, null, 2));
+    
