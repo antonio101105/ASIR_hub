@@ -1,8 +1,8 @@
-/* Estilos para el Sistema de Exámenes */
+/* Estilos para el Sistema de Exámenes - Paleta Morado/Rosa Minimalista */
 
 /* Botón de iniciar test */
 .quiz-start-btn {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(135deg, #a78bfa 0%, #e879f9 100%);
     border: none;
     padding: 1rem 2rem;
     border-radius: 12px;
@@ -10,16 +10,17 @@
     font-weight: 600;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-fast);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-main);
+    box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
 }
 
 .quiz-start-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px var(--accent-glow);
+    box-shadow: 0 8px 20px rgba(167, 139, 250, 0.3);
 }
 
 /* Contenedor del quiz */
@@ -31,12 +32,12 @@
 
 /* Pregunta */
 .quiz-q {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: rgba(40, 40, 40, 0.4);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    transition: var(--transition);
+    transition: var(--transition-fast);
 }
 
 .quiz-q h4 {
@@ -59,19 +60,19 @@
     gap: 0.75rem;
     padding: 0.75rem 1rem;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--glass-border);
     border-radius: 8px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-fast);
 }
 
 .quiz-opt:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--accent-color);
+    background: rgba(167, 139, 250, 0.1);
+    border-color: #a78bfa;
 }
 
 .quiz-opt input[type="radio"] {
-    accent-color: var(--accent-color);
+    accent-color: #a78bfa;
     width: 18px;
     height: 18px;
     cursor: pointer;
@@ -133,7 +134,7 @@
     gap: 1rem;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--card-border);
+    border-top: 1px solid var(--glass-border);
 }
 
 .quiz-btn {
@@ -142,7 +143,7 @@
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-fast);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -150,14 +151,15 @@
 }
 
 .quiz-submit {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(135deg, #a78bfa 0%, #e879f9 100%);
     border: none;
     color: white;
+    box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
 }
 
 .quiz-submit:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px var(--accent-glow);
+    box-shadow: 0 6px 15px rgba(167, 139, 250, 0.3);
 }
 
 .quiz-submit:disabled {
@@ -167,19 +169,19 @@
 
 .quiz-close {
     background: transparent;
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--glass-border);
     color: var(--text-secondary);
 }
 
 .quiz-close:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+    background: rgba(167, 139, 250, 0.1);
+    border-color: #a78bfa;
+    color: #a78bfa;
 }
 
 /* Resultado final */
 .quiz-result {
-    background: var(--card-bg);
+    background: rgba(40, 40, 40, 0.4);
     border: 2px solid;
     border-radius: 16px;
     padding: 2rem;
@@ -199,7 +201,7 @@
 }
 
 .quiz-result h3 {
-    color: var(--accent-color);
+    color: #a78bfa;
     font-size: 1.5rem;
     margin-bottom: 1rem;
     display: flex;
@@ -217,7 +219,7 @@
 .quiz-pct {
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(135deg, #a78bfa 0%, #e879f9 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -227,11 +229,36 @@
 .quiz-grade {
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--accent-color);
+    color: #d8b4fe;
     margin-top: 0.5rem;
 }
 
-/* Animación fadeIn */
+/* Select personalizado para el examen global */
+#globalExamSubject {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--text-primary);
+    padding: 0.8rem 1rem;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+#globalExamSubject:focus {
+    outline: none;
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+}
+
+#globalExamSubject option {
+    background: #1a1a1a;
+    color: var(--text-primary);
+    padding: 0.5rem;
+}
+
+/* Animación slideInUp */
 @keyframes slideInUp {
     from {
         opacity: 0;
