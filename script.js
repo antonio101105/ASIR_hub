@@ -2670,7 +2670,7 @@ function renderResources() {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${resource.id}, this)">
+                <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${resource.id}" onclick="toggleFavorite(${resource.id})">
                     <i class="fa-${isFav ? 'solid' : 'regular'} fa-heart"></i>
                 </button>
                 <div class="card-header">
@@ -2815,18 +2815,38 @@ function loadState() {
     });
 }
 
-window.toggleFavorite = function (id, btn) {
+window.toggleFavorite = function (id) {
     const index = favorites.indexOf(id);
+    
+    // Actualizar estado lógico
     if (index === -1) {
         favorites.push(id);
-        btn.classList.add('active');
-        btn.querySelector('i').classList.replace('fa-regular', 'fa-solid');
     } else {
         favorites.splice(index, 1);
-        btn.classList.remove('active');
-        btn.querySelector('i').classList.replace('fa-solid', 'fa-regular');
     }
+    
+    // Guardar en localStorage
     localStorage.setItem('asir_favorites', JSON.stringify(favorites));
+    
+    // Actualizar UI: Buscar TODOS los botones que correspondan a este recurso
+    const buttons = document.querySelectorAll(`.fav-btn[data-id="${id}"]`);
+    
+    buttons.forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (index === -1) {
+            // Se añadió a favoritos
+            btn.classList.add('active');
+            icon.classList.replace('fa-regular', 'fa-solid');
+            // Si por alguna razón ya estaba solid (ej. en lista de favoritos), asegurarse
+            if (!icon.classList.contains('fa-solid')) icon.classList.add('fa-solid');
+        } else {
+            // Se quitó de favoritos
+            btn.classList.remove('active');
+            icon.classList.replace('fa-solid', 'fa-regular');
+        }
+    });
+
+    // Re-renderizar la sección de favoritos para reflejar cambios (añadir/quitar tarjeta)
     renderFavorites();
 }
 
@@ -2850,7 +2870,7 @@ function renderFavorites() {
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-            <button class="fav-btn active" onclick="toggleFavorite(${resource.id}, this)">
+            <button class="fav-btn active" data-id="${resource.id}" onclick="toggleFavorite(${resource.id})">
                 <i class="fa-solid fa-heart"></i>
             </button>
             <div class="card-header">
