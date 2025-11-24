@@ -1,3 +1,94 @@
+// 1. Configuración de Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyAcP4sw8doSxDSYrjxXapL2uo6-dcyKxYA",
+    authDomain: "asirhub.firebaseapp.com",
+    projectId: "asirhub",
+    storageBucket: "asirhub.firebasestorage.app",
+    messagingSenderId: "962443688736",
+    appId: "1:962443688736:web:47c631e265243b56ca7545",
+    measurementId: "G-5W5NDDR48R"
+};
+
+// 2. Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const analytics = firebase.analytics();
+
+// 3. Referencias al HTML
+const btnLogin = document.getElementById('btn-login');
+const btnLogout = document.getElementById('btn-logout');
+const userInfo = document.getElementById('user-info');
+const userNameSpan = document.getElementById('user-name');
+
+// 4. Función para Iniciar Sesión con GitHub
+if (btnLogin) {
+    btnLogin.addEventListener('click', () => {
+        const provider = new firebase.auth.GithubAuthProvider();
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                // El usuario ha iniciado sesión correctamente
+                const user = result.user;
+                console.log("Usuario logueado:", user);
+
+                // AQUÍ es donde conectamos Auth con la Base de Datos
+                guardarUsuarioEnBaseDeDatos(user);
+            })
+            .catch((error) => {
+                console.error("Error al iniciar sesión:", error);
+                alert("Hubo un error al iniciar sesión: " + error.message);
+            });
+    });
+}
+
+// 5. Función para cerrar sesión
+if (btnLogout) {
+    btnLogout.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            console.log("Sesión cerrada");
+            alert("Has cerrado sesión");
+        });
+    });
+}
+
+// 6. Detectar cambios en el estado de la sesión (si el usuario ya entró antes)
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        // Usuario está logueado
+        if (btnLogin) btnLogin.style.display = 'none';
+        if (userInfo) {
+            userInfo.style.display = 'flex';
+            if (userNameSpan) userNameSpan.textContent = user.displayName || user.email;
+        }
+    } else {
+        // No hay usuario logueado
+        if (btnLogin) btnLogin.style.display = 'block';
+        if (userInfo) userInfo.style.display = 'none';
+    }
+});
+
+// 7. Función para guardar/actualizar usuario en Firestore
+function guardarUsuarioEnBaseDeDatos(user) {
+    // Usamos el UID del usuario como ID del documento para que sea único
+    const userRef = db.collection('usuarios').doc(user.uid);
+
+    userRef.set({
+        uid: user.uid,
+        nombre: user.displayName,
+        email: user.email,
+        foto: user.photoURL,
+        ultimoLogin: new Date(),
+        // Aquí puedes añadir campos para tus APIs más adelante
+        apis: {}
+    }, { merge: true }) // 'merge: true' actualiza los datos si ya existen, no los borra
+        .then(() => {
+            console.log("Usuario guardado en la base de datos correctamente");
+        })
+        .catch((error) => {
+            console.error("Error al guardar en base de datos:", error);
+        });
+}
+
 // Asignaturas por curso (1º y 2º de ASIR)
 const subjects = {
     1: ['FH', 'DIG', 'GBD', 'LMSGI', 'SOS', 'IPE1', 'ISO', 'PAR'],
@@ -2817,20 +2908,20 @@ function loadState() {
 
 window.toggleFavorite = function (id) {
     const index = favorites.indexOf(id);
-    
+
     // Actualizar estado lógico
     if (index === -1) {
         favorites.push(id);
     } else {
         favorites.splice(index, 1);
     }
-    
+
     // Guardar en localStorage
     localStorage.setItem('asir_favorites', JSON.stringify(favorites));
-    
+
     // Actualizar UI: Buscar TODOS los botones que correspondan a este recurso
     const buttons = document.querySelectorAll(`.fav-btn[data-id="${id}"]`);
-    
+
     buttons.forEach(btn => {
         const icon = btn.querySelector('i');
         if (index === -1) {

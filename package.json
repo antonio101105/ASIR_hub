@@ -7,7 +7,9 @@
     "scripts": {
         "start": "echo 'El proyecto estático está listo'"
     },
-    "dependencies": {},
+    "dependencies": {
+        "firebase": "^12.6.0"
+    },
     "engines": {
         "node": "22.x"
     }
