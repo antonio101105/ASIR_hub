@@ -29,12 +29,13 @@ const subjects = {
 
 // Configuración de Firebase (Reemplaza con tus propias claves)
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "tu-proyecto.firebaseapp.com",
-    projectId: "tu-proyecto",
-    storageBucket: "tu-proyecto.appspot.com",
-    messagingSenderId: "TU_SENDER_ID",
-    appId: "TU_APP_ID"
+    apiKey: "AIzaSyAcP4sw8doSxDSYrjxXapL2uo6-dcyKxYA",
+    authDomain: "asirhub.firebaseapp.com",
+    projectId: "asirhub",
+    storageBucket: "asirhub.firebasestorage.app",
+    messagingSenderId: "962443688736",
+    appId: "1:962443688736:web:47c631e265243b56ca7545",
+    measurementId: "G-5W5NDDR48R"
 };
 
 // Inicializar Firebase
