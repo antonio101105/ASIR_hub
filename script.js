@@ -21,6 +21,12 @@ const subjectIcons = {
     'SRI': 'fa-solid fa-ethernet'
 };
 
+// Asignaturas por curso
+const subjects = {
+    1: ['FH', 'DIG', 'GBD', 'LMSGI', 'SOS', 'IPE1', 'ISO', 'PAR'],
+    2: ['ASO', 'ASGBD', 'SAD', 'PROY', 'OPT', 'IPE2', 'IAW', 'HLC', 'ING', 'SRI']
+};
+
 const topicsData = {
     'FH': [
         {
