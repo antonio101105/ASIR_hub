@@ -7,16 +7,17 @@
     <title>ASIR_hub | Recursos ASIR</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌐</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="quiz.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Banner de desarrollo -->
     <div class="dev-banner">
         <i class="fa-solid fa-triangle-exclamation"></i>
         <span>Este proyecto está actualmente en desarrollo. Algunas funciones pueden no estar disponibles.</span>
@@ -50,7 +51,6 @@
         </div>
 
         <div class="filters" id="filterContainer">
-            <!-- Filtros inyectados por JavaScript -->
         </div>
 
         <div id="favoritesContainer" class="favorites-container" style="display: none;">
@@ -61,14 +61,11 @@
 
     <main class="container">
         <div id="topicsContainer" class="topics-container">
-            <!-- Temas inyectados por JavaScript -->
         </div>
         <div class="resource-grid" id="resourceGrid">
-            <!-- Los recursos se inyectarán aquí por JavaScript -->
         </div>
     </main>
 
-    <!-- Modal de contenido del tema -->
     <div class="modal-overlay" id="topicModalOverlay">
         <div class="modal topic-modal">
             <div class="modal-header">
@@ -76,12 +73,10 @@
                 <button class="close-modal" id="closeTopicModalBtn"><i class="fa-solid fa-times"></i></button>
             </div>
             <div class="modal-content" id="topicModalContent">
-                <!-- Contenido inyectado por JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- Modal Dashboard -->
     <div class="modal-overlay" id="dashboardModalOverlay">
         <div class="modal dashboard-modal">
             <div class="modal-header">
@@ -113,7 +108,6 @@
                     <h3><i class="fa-solid fa-graduation-cap"></i> Modo Examen Global</h3>
                     <p>Ponte a prueba con preguntas aleatorias de todos los temas.</p>
                     <select id="globalExamSubject" class="search-filter" style="width: 100%; margin-bottom: 1rem;">
-                        <!-- Opciones inyectadas por JS -->
                     </select>
                     <button class="btn-primary" style="width: 100%; justify-content: center;"
                         onclick="startGlobalExam()">
@@ -126,21 +120,18 @@
 
     <footer>
         <p>
-            <i class="fa-brands fa-github"></i>
-            Proyecto Open Source | <a href="https://github.com/antonio101105/ASIR_hub"
-                style="color: #a78bfa; text-decoration: none;">Contribuir en
-                GitHub</a>
+            <i class="fa-brands fa-github"></i> Proyecto Open Source |
+            <a href="https://github.com/antonio101105/ASIR_hub"
+                style="color: #a78bfa; text-decoration: none;">Contribuir en GitHub</a>
         </p>
         <p style="font-size: 0.8rem; margin-top: 0.5rem;">Hecho con <i class="fa-solid fa-heart"
                 style="color: #e879f9;"></i> para la comunidad de informáticos</p>
     </footer>
 
-    <!-- Botón Flotante para Auth -->
     <button id="floating-trigger" class="floating-btn">
         <i class="fa-solid fa-user"></i>
     </button>
 
-    <!-- Modal de Autenticación -->
     <div id="auth-modal" class="modal-overlay hidden">
         <div class="modal auth-modal">
             <div class="modal-header">
@@ -148,43 +139,261 @@
                 <button class="close-modal" id="closeAuthModal"><i class="fa-solid fa-times"></i></button>
             </div>
             <div class="modal-content auth-content">
-                <div class="auth-buttons">
-                    <button id="btn-google" class="btn-auth btn-google">
-                        <i class="fa-brands fa-google"></i> Acceder con Google
-                    </button>
-                    <button id="btn-github" class="btn-auth btn-github">
-                        <i class="fa-brands fa-github"></i> Acceder con GitHub
-                    </button>
+
+                <div id="login-section" class="auth-section">
+                    <div class="auth-buttons">
+                        <button id="btn-google" class="btn-auth btn-google">
+                            <i class="fa-brands fa-google"></i> Acceder con Google
+                        </button>
+                        <button id="btn-github" class="btn-auth btn-github">
+                            <i class="fa-brands fa-github"></i> Acceder con GitHub
+                        </button>
+                    </div>
+
+                    <div class="auth-separator">
+                        <span>o</span>
+                    </div>
+
+                    <form id="email-auth-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="auth-email">Email</label>
+                            <input type="email" id="auth-email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="auth-password">Contraseña</label>
+                            <input type="password" id="auth-password" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="btn-email-login" class="btn-primary">Login</button>
+                            <button type="button" id="btn-email-register" class="btn-secondary">Registrarse</button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="auth-separator">
-                    <span>o</span>
-                </div>
+                <div id="user-dashboard" class="auth-section hidden">
+                    <div class="dashboard-header">
+                        <h3 id="greeting">Hola, Usuario</h3>
+                        <button id="btn-logout" class="btn-secondary">Cerrar Sesión</button>
+                    </div>
 
-                <form id="email-auth-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="auth-email">Email</label>
-                        <input type="email" id="auth-email" placeholder="tu@email.com" required>
+                    <h2 style="margin-top: 2rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-graduation-cap"></i> Mi Expediente Académico
+                    </h2>
+
+                    <div class="curso-section">
+                        <h3><i class="fa-solid fa-book"></i> 1º Curso</h3>
+                        <div class="asignaturas-grid">
+                            <div class="asignatura-card">
+                                <h4><i class="fa-brands fa-linux"></i> ISO</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="ISO"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="ISO" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-network-wired"></i> PAR</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="PAR"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="PAR" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-database"></i> GBD</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="GBD"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="GBD" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-code"></i> LMSGI</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="LMSGI"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="LMSGI" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-microchip"></i> FH</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="FH" data-tipo="nota"
+                                        min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="FH" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-briefcase"></i> FOL</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="FOL"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="FOL" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="auth-password">Contraseña</label>
-                        <input type="password" id="auth-password" placeholder="••••••••" required>
+
+                    <div class="curso-section">
+                        <h3><i class="fa-solid fa-book-open"></i> 2º Curso</h3>
+                        <div class="asignaturas-grid">
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-terminal"></i> ASO</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="ASO"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="ASO" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-ethernet"></i> SRI</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="SRI"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="SRI" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-brands fa-html5"></i> IAW</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="IAW"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="IAW" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-table"></i> ASGBD</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="ASGBD"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="ASGBD" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-shield-halved"></i> SAD</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="SAD"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="SAD" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="asignatura-card">
+                                <h4><i class="fa-solid fa-handshake"></i> EIE</h4>
+                                <div class="input-group">
+                                    <label>Nota:</label>
+                                    <input type="number" class="input-seguimiento" data-asignatura="EIE"
+                                        data-tipo="nota" min="0" max="10" step="0.1" placeholder="0-10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado:</label>
+                                    <select class="input-seguimiento" data-asignatura="EIE" data-tipo="estado">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="suspenso">Suspenso</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-actions">
-                        <button type="button" id="btn-email-login" class="btn-primary">Login</button>
-                        <button type="button" id="btn-email-register" class="btn-secondary">Registrarse</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js" defer></script>
-    <script src="quiz.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
+    <script src="script.js"></script>
+    <script src="quiz.js"></script>
 
 </body>
 

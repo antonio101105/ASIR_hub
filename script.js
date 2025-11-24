@@ -3035,20 +3035,49 @@ function initAuth() {
     auth.onAuthStateChanged((user) => {
         if (user) {
             handleAuthSuccess(user, false);
+        } else {
+            // Usuario no logueado - mostrar login
+            const loginSection = document.getElementById('login-section');
+            const userDashboard = document.getElementById('user-dashboard');
+            const triggerBtn = document.getElementById('floating-trigger');
+
+            if (loginSection) loginSection.classList.remove('hidden');
+            if (userDashboard) userDashboard.classList.add('hidden');
+            if (triggerBtn) triggerBtn.style.display = 'flex';
         }
+    });
+
+    // Logout Handler
+    document.getElementById('btn-logout')?.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            const modal = document.getElementById('auth-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+            alert('Sesión cerrada correctamente');
+        }).catch((error) => {
+            alert('Error al cerrar sesión: ' + error.message);
+        });
     });
 }
 
 function handleAuthSuccess(user, showWelcome = true) {
     const modal = document.getElementById('auth-modal');
     const triggerBtn = document.getElementById('floating-trigger');
+    const loginSection = document.getElementById('login-section');
+    const userDashboard = document.getElementById('user-dashboard');
+    const greeting = document.getElementById('greeting');
 
-    // Cerrar modal y ocultar botón flotante
-    if (modal) {
-        modal.classList.remove('active');
-        setTimeout(() => modal.classList.add('hidden'), 300);
-    }
+    // Ocultar login y mostrar dashboard
+    if (loginSection) loginSection.classList.add('hidden');
+    if (userDashboard) userDashboard.classList.remove('hidden');
     if (triggerBtn) triggerBtn.style.display = 'none';
+
+    // Actualizar saludo
+    if (greeting) {
+        greeting.textContent = `Hola, ${user.displayName || user.email.split('@')[0]}`;
+    }
 
     // Guardar usuario en Firestore
     db.collection('usuarios').doc(user.uid).set({
@@ -3061,10 +3090,132 @@ function handleAuthSuccess(user, showWelcome = true) {
     if (showWelcome) {
         alert(`¡Bienvenido, ${user.displayName || user.email}!`);
     }
+
+    // Cargar progreso del usuario después del login
+    cargarProgresoUsuario(user.uid);
+}
+
+// ========== FUNCIONES DE SEGUIMIENTO ACADÉMICO ==========
+
+/**
+ * Guarda un dato de una asignatura en Firestore
+ * @param {string} idAsignatura - Código de la asignatura (ej: 'GBD', 'PAR')
+ * @param {string} tipoDato - Tipo de dato ('nota' o 'estado')
+ * @param {any} valor - Valor a guardar
+ */
+function guardarDatoAsignatura(idAsignatura, tipoDato, valor) {
+    const user = auth.currentUser;
+
+    if (!user) {
+        console.warn('No hay usuario logueado. No se puede guardar el progreso.');
+        return;
+    }
+
+    if (!db) {
+        console.error('Firestore no está inicializado.');
+        return;
+    }
+
+    const userRef = db.collection('usuarios').doc(user.uid);
+
+    // Preparamos los datos usando sintaxis de objeto anidado
+    // Usamos { merge: true } para que NO borre lo que ya existía,
+    // sino que mezcle los datos nuevos con los viejos.
+    const datosAGuardar = {
+        progreso: {
+            [idAsignatura]: {
+                [tipoDato]: valor
+            }
+        }
+    };
+
+    userRef.set(datosAGuardar, { merge: true })
+        .then(() => {
+            console.log(`✓ Guardado correctamente: ${idAsignatura} > ${tipoDato} = ${valor}`);
+            // Opcional: Mostrar feedback visual sin alert molesto
+        })
+        .catch((error) => {
+            console.error('Error REAL de Firebase:', error);
+            alert('Error al guardar: ' + error.message);
+        });
+}
+
+/**
+ * Carga el progreso del usuario desde Firestore y rellena los inputs
+ * @param {string} uid - ID del usuario
+ */
+function cargarProgresoUsuario(uid) {
+    if (!db) {
+        console.error('Firestore no está inicializado.');
+        return;
+    }
+
+    db.collection('usuarios').doc(uid).get()
+        .then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                const progreso = data.progreso || {};
+
+                console.log('Progreso cargado:', progreso);
+
+                // Recorrer todas las asignaturas guardadas
+                Object.keys(progreso).forEach(asignatura => {
+                    const datosAsignatura = progreso[asignatura];
+
+                    // Recorrer cada tipo de dato (nota, estado, etc.)
+                    Object.keys(datosAsignatura).forEach(tipoDato => {
+                        const valor = datosAsignatura[tipoDato];
+
+                        // Buscar el input correspondiente en el HTML
+                        const input = document.querySelector(
+                            `.input-seguimiento[data-asignatura="${asignatura}"][data-tipo="${tipoDato}"]`
+                        );
+
+                        if (input) {
+                            input.value = valor;
+                            console.log(`✓ Cargado: ${asignatura} - ${tipoDato} = ${valor}`);
+                        }
+                    });
+                });
+            } else {
+                console.log('No hay datos de progreso guardados para este usuario.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error al cargar progreso:', error);
+        });
+}
+
+/**
+ * Inicializa los event listeners para los inputs de seguimiento
+ * Se ejecuta cuando el DOM está listo
+ */
+function inicializarSeguimientoAcademico() {
+    // Buscar todos los inputs con la clase 'input-seguimiento'
+    const inputs = document.querySelectorAll('.input-seguimiento');
+
+    inputs.forEach(input => {
+        input.addEventListener('change', function () {
+            const asignatura = this.dataset.asignatura;
+            const tipoDato = this.dataset.tipo;
+            const valor = this.value;
+
+            if (asignatura && tipoDato) {
+                guardarDatoAsignatura(asignatura, tipoDato, valor);
+            } else {
+                console.warn('Input sin data-asignatura o data-tipo:', this);
+            }
+        });
+    });
+
+    console.log(`✓ Inicializados ${inputs.length} inputs de seguimiento académico`);
 }
 
 // Iniciar la aplicación
 init();
+
+// Inicializar seguimiento académico cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', inicializarSeguimientoAcademico);
 
 // Función para copiar código
 window.copyCode = function (btn) {
