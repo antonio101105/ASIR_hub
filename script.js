@@ -27,7 +27,7 @@ const subjects = {
     2: ['ASO', 'ASGBD', 'SAD', 'PROY', 'OPT', 'IPE2', 'IAW', 'HLC', 'ING', 'SRI']
 };
 
-// Configuración de Firebase (Reemplaza con tus propias claves)
+// Configuración de Firebase 
 const firebaseConfig = {
     apiKey: "AIzaSyAcP4sw8doSxDSYrjxXapL2uo6-dcyKxYA",
     authDomain: "asirhub.firebaseapp.com",
