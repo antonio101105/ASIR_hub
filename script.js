@@ -229,5 +229,24 @@ resourceForm.addEventListener('submit', (e) => {
     modalOverlay.classList.remove('active');
 });
 
+// Project AI Visibility Logic
+function checkProjectAIVisibility() {
+    const projectAISection = document.getElementById('project-ai-section');
+    const excludedPages = ['temas', 'test', 'perfil'];
+    const currentUrl = window.location.href.toLowerCase();
+
+    const shouldHide = excludedPages.some(page => currentUrl.includes(page));
+
+    if (shouldHide) {
+        projectAISection.classList.add('hidden');
+    } else {
+        projectAISection.classList.remove('hidden');
+    }
+}
+
+// Run check on load and potential URL changes
+checkProjectAIVisibility();
+window.addEventListener('popstate', checkProjectAIVisibility);
+
 // Start
 init();

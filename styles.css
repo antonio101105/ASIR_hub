@@ -426,3 +426,40 @@ footer {
         padding: 0 1rem 4rem;
     }
 }
+
+/* Project AI Section */
+#project-ai-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 15, 20, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.project-ai-content {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-ai-content i {
+    color: var(--primary);
+}
+
+/* Hidden state */
+#project-ai-section.hidden {
+    transform: translateY(100%);
+}
