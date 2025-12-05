@@ -21,7 +21,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 
                 parts = command.split(' ', 1)
                 cmd = parts[0].lower()
-                arg = parts[1] if len(parts) > 1 else ''
+                arg = parts[1] if len(parts) > 1 else ""
 
                 if cmd == 'cd':
                     response_text = agent.change_directory(arg)

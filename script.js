@@ -2799,7 +2799,14 @@ const closeDashboardBtn = document.getElementById('closeDashboardBtn');
 
 if (dashboardBtn) {
     dashboardBtn.addEventListener('click', () => {
-        updateDashboardStats();
+        // Obtenemos el usuario actual de Firebase
+        const user = auth.currentUser;
+        if (user) {
+            // Llamamos directamente a la función visual de Firebase
+            actualizarDashboardVisual(user.uid);
+        } else {
+            alert("Debes iniciar sesión para ver tus estadísticas.");
+        }
         dashboardModalOverlay.classList.add('active');
     });
 }
@@ -3185,11 +3192,11 @@ function cargarProgresoUsuario(uid) {
                         if (temas.length > 0) {
                             const suma = temas.reduce((acc, t) => acc + (parseFloat(t.nota) || 0), 0);
                             const media = (suma / temas.length).toFixed(2);
-                            
+
                             const inputNota = document.querySelector(
                                 `.input-seguimiento[data-asignatura="${asignatura}"][data-tipo="nota"]`
                             );
-                            
+
                             if (inputNota) {
                                 inputNota.value = media;
                                 console.log(`✓ Nota media calculada para ${asignatura}: ${media}`);
@@ -3374,10 +3381,10 @@ async function actualizarDashboardVisual(uid) {
 }
 
 // Aseguramos que sea global
-window.updateDashboardStats = function () {
-    const user = firebase.auth().currentUser;
-    if (user) actualizarDashboardVisual(user.uid);
-};
+//window.updateDashboardStats = function () {
+//    const user = firebase.auth().currentUser;
+//    if (user) actualizarDashboardVisual(user.uid);
+//};
 
 /**
  * Inicializa los event listeners para los inputs de seguimiento
